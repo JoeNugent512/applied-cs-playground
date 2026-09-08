@@ -1,0 +1,59 @@
+{
+  "dataSource": "Requests",
+  "sourceKind": "SharePoint list or Microsoft List",
+  "purpose": "Read-only request browser",
+  "columns": [
+    {
+      "displayName": "ID",
+      "internalName": "ID",
+      "type": "Number",
+      "cardinality": "single"
+    },
+    {
+      "displayName": "Title",
+      "internalName": "Title",
+      "type": "Text",
+      "cardinality": "single"
+    },
+    {
+      "displayName": "Description",
+      "internalName": "Description",
+      "type": "Multiline text",
+      "cardinality": "single"
+    },
+    {
+      "displayName": "Status",
+      "internalName": "Status",
+      "type": "Choice",
+      "cardinality": "single",
+      "allowedValues": ["Green", "Yellow", "Red"],
+      "readProjection": {
+        "Value": "Text"
+      }
+    },
+    {
+      "displayName": "DueDate",
+      "internalName": "DueDate",
+      "type": "DateTime",
+      "cardinality": "single"
+    },
+    {
+      "displayName": "Owner",
+      "internalName": "Owner",
+      "type": "Person",
+      "cardinality": "single",
+      "readProjection": {
+        "DisplayName": "Text",
+        "Email": "Text"
+      },
+      "note": "Read-only fictional projection; not a complete SharePoint Person write payload."
+    },
+    {
+      "displayName": "Completed",
+      "internalName": "Completed",
+      "type": "YesNo",
+      "cardinality": "single"
+    }
+  ],
+  "verificationWarning": "For a real List, record actual display/internal names, types, single/multi settings, Choice values, and value fields from column settings. Do not infer types from CSV."
+}
