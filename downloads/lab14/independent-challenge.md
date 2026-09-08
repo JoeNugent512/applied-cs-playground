@@ -1,39 +1,41 @@
-# Independent challenge: Requests browser
+# Independent challenge: stop the completed-row leak
 
-Build in real Power Apps Studio, but use the fictional local fixture for reproducible tests. Keep the app read-only.
+Work in the read-only Requests browser you already built in real Power Apps Studio. Use the fictional local fixture for reproducible tests. You may ask an external AI assistant for coaching, but you must gather the evidence, explain the cause, and verify the result.
 
-## Requirements
+## Starting fault
 
-- One visible gallery named `galRequests`.
-- One collection named `colTestRequests` loaded from the supplied fixture.
-- Incomplete records only, sorted by `DueDate` ascending.
-- One classic dropdown named `drpStatus` with All, Green, Yellow, Red.
-- Status filtering that never removes the incomplete-only rule.
-- A selected-record variable named `varSelectedRequest`.
-- A separate visible detail area that changes when different rows are selected.
-- One deliberate bug, one sanitized JSON capture, one evidence brief, one small repair, and a retest.
-- No `Patch`, submit, or server write.
+Replace only `galRequests.Items` with this deliberately faulty complete formula:
+
+```powerfx
+SortByColumns(
+    Filter(
+        colTestRequests,
+        Completed = false && drpStatus.Selected.Value = "All" ||
+        Status.Value = drpStatus.Selected.Value
+    ),
+    "DueDate",
+    SortOrder.Ascending
+)
+```
+
+Do not rebuild the gallery, dropdown, local collection, or selected-record details.
 
 ## Clear tests
 
-1. The fixture contains 12 rows; the browser shows 8 for All.
-2. Green shows 3: IDs 101, 104, 107.
-3. Yellow shows 3: IDs 102, 105, 108.
-4. Red shows 2: IDs 103, 106.
-5. Each filtered set remains in ascending `DueDate` order.
-6. Select two different rows; the external detail labels visibly change.
-7. Completed IDs 109–112 never appear in any dropdown state.
-8. The deliberate bug has recorded Expected, Actual, Formula, and Data.
-9. The JSON projection contains only fields needed for diagnosis and was inspected before sharing.
-10. One small repair passes the original failing test.
+1. Record expected counts **All 8, Green 3, Yellow 3, Red 2** before testing.
+2. Reproduce actual counts **All 8, Green 5, Yellow 4, Red 3**.
+3. Use sanitized JSON to prove completed IDs 109–112 and their statuses.
+4. Complete Expected, Actual, Formula, and Data in the evidence brief.
+5. Explain why the AND/OR grouping leaks a completed row when a color is selected.
+6. Make the smallest grouping repair while preserving `SortByColumns` and ascending `DueDate`.
+7. Retest All/Green/Yellow/Red, date order, and two different row selections.
 
 ## Self-check
 
-- [ ] I gave AI context and schema before asking for code.
-- [ ] I asked AI to clarify material unknowns.
+- [ ] I gathered evidence before asking AI for a repair.
 - [ ] I can explain why `Status.Value` is used.
-- [ ] I preserved `Completed=false` around the All-or-status condition.
-- [ ] I proved the selected record changes.
-- [ ] I diagnosed from evidence instead of blindly replacing the formula.
-- [ ] I understand that local collection success does not prove live SharePoint connector or delegation behavior.
+- [ ] I kept `Completed=false` outside the All-or-matching-status group.
+- [ ] I preserved ascending `DueDate` sorting.
+- [ ] Counts pass at 8/3/3/2 and completed IDs never appear.
+- [ ] Two row clicks still change the visible selected record.
 - [ ] I kept the experience read-only.
