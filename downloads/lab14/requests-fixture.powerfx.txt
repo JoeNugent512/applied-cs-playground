@@ -1,0 +1,26 @@
+// Lab 14 reproducible fixture.
+// Fixed class anchor: Date(2026, 9, 8). Dates before/at/after it represent past/anchor/future.
+// English authoring locale uses commas between function arguments/records; semicolons chain behavior actions. Adapt separators for your locale.
+ClearCollect(
+    colTestRequests,
+    {ID: 101, Title: "Replace lobby signage", Description: "Old sign is difficult to read", Status: {Value: "Green"}, DueDate: Date(2026, 9, 1) + Time(9, 0, 0), Owner: {DisplayName: "Avery Chen", Email: "avery.chen@example.test"}, Completed: false},
+    {ID: 102, Title: "Review visitor badge instructions", Description: Blank(), Status: {Value: "Yellow"}, DueDate: Date(2026, 9, 5) + Time(13, 30, 0), Owner: {DisplayName: "Jordan Lee", Email: "jordan.lee@example.test"}, Completed: false},
+    {ID: 103, Title: "Repair west stairwell light", Description: "Light is fully out", Status: {Value: "Red"}, DueDate: Date(2026, 9, 7) + Time(8, 0, 0), Owner: {DisplayName: "Morgan Patel", Email: "morgan.patel@example.test"}, Completed: false},
+    {ID: 104, Title: "Order recycling labels", Description: "Labels for three shared rooms", Status: {Value: "Green"}, DueDate: Date(2026, 9, 8) + Time(10, 0, 0), Owner: {DisplayName: "Avery Chen", Email: "avery.chen@example.test"}, Completed: false},
+    {ID: 105, Title: "Confirm training room layout", Description: "Seat 24 participants", Status: {Value: "Yellow"}, DueDate: Date(2026, 9, 8) + Time(15, 0, 0), Owner: {DisplayName: "Sam Rivera", Email: "sam.rivera@example.test"}, Completed: false},
+    {ID: 106, Title: "Restore reception phone service", Description: "Urgent incoming-call issue", Status: {Value: "Red"}, DueDate: Date(2026, 9, 9) + Time(9, 15, 0), Owner: {DisplayName: "Jordan Lee", Email: "jordan.lee@example.test"}, Completed: false},
+    {ID: 107, Title: "Archive outdated supply request templates from the shared operations folder", Description: Blank(), Status: {Value: "Green"}, DueDate: Date(2026, 9, 14) + Time(12, 0, 0), Owner: {DisplayName: "Morgan Patel", Email: "morgan.patel@example.test"}, Completed: false},
+    {ID: 108, Title: "Schedule quarterly equipment check", Description: "Coordinate access with room leads", Status: {Value: "Yellow"}, DueDate: Date(2026, 9, 21) + Time(11, 0, 0), Owner: {DisplayName: "Sam Rivera", Email: "sam.rivera@example.test"}, Completed: false},
+    {ID: 109, Title: "Replace kitchenette clock", Description: "Completed before class snapshot", Status: {Value: "Green"}, DueDate: Date(2026, 8, 28) + Time(9, 0, 0), Owner: {DisplayName: "Avery Chen", Email: "avery.chen@example.test"}, Completed: true},
+    {ID: 110, Title: "Update emergency contact card", Description: "Completed before class snapshot", Status: {Value: "Yellow"}, DueDate: Date(2026, 9, 2) + Time(16, 0, 0), Owner: {DisplayName: "Jordan Lee", Email: "jordan.lee@example.test"}, Completed: true},
+    {ID: 111, Title: "Resolve loading-door alarm", Description: "Completed before class snapshot", Status: {Value: "Red"}, DueDate: Date(2026, 9, 6) + Time(7, 30, 0), Owner: {DisplayName: "Morgan Patel", Email: "morgan.patel@example.test"}, Completed: true},
+    {ID: 112, Title: "Label storage cabinet shelves", Description: "Completed on class anchor", Status: {Value: "Green"}, DueDate: Date(2026, 9, 8) + Time(14, 0, 0), Owner: {DisplayName: "Sam Rivera", Email: "sam.rivera@example.test"}, Completed: true}
+)
+
+// Expected fixture tests:
+// CountRows(colTestRequests) = 12
+// CountRows(Filter(colTestRequests, Completed = false)) = 8
+// Incomplete Green = 3 (IDs 101, 104, 107)
+// Incomplete Yellow = 3 (IDs 102, 105, 108)
+// Incomplete Red = 2 (IDs 103, 106)
+// Completed = 4 (IDs 109, 110, 111, 112)
