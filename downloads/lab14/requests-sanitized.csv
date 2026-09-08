@@ -1,0 +1,13 @@
+ID,Title,Description,Status,DueDate,Owner,Completed
+101,Replace lobby signage,Old sign is difficult to read,Green,2026-09-01T09:00:00,Avery Chen,false
+102,Review visitor badge instructions,,Yellow,2026-09-05T13:30:00,Jordan Lee,false
+103,Repair west stairwell light,Light is fully out,Red,2026-09-07T08:00:00,Morgan Patel,false
+104,Order recycling labels,Labels for three shared rooms,Green,2026-09-08T10:00:00,Avery Chen,false
+105,Confirm training room layout,Seat 24 participants,Yellow,2026-09-08T15:00:00,Sam Rivera,false
+106,Restore reception phone service,Urgent incoming-call issue,Red,2026-09-09T09:15:00,Jordan Lee,false
+107,Archive outdated supply request templates from the shared operations folder,,Green,2026-09-14T12:00:00,Morgan Patel,false
+108,Schedule quarterly equipment check,Coordinate access with room leads,Yellow,2026-09-21T11:00:00,Sam Rivera,false
+109,Replace kitchenette clock,Completed before class snapshot,Green,2026-08-28T09:00:00,Avery Chen,true
+110,Update emergency contact card,Completed before class snapshot,Yellow,2026-09-02T16:00:00,Jordan Lee,true
+111,Resolve loading-door alarm,Completed before class snapshot,Red,2026-09-06T07:30:00,Morgan Patel,true
+112,Label storage cabinet shelves,Completed on class anchor,Green,2026-09-08T14:00:00,Sam Rivera,true
