@@ -4,13 +4,22 @@ Use these files with Power Apps Studio and an external AI assistant. No Copilot-
 
 ## Suggested order
 
-1. Paste `ai-project-rulebook.md` into a new AI conversation.
-2. Create an authorized blank practice List using the steps below.
-3. Record its schema, then export its deliberately fictional current view.
-4. Give AI `requests-schema.json` plus the supplied sanitized CSV/JSON and ask it to generate the test collection.
+### Beginner preparation (not included in the 45-minute workshop)
+
+1. Create an authorized blank practice List using the steps below, **or use an instructor-prepared authorized Requests List**.
+2. Create a blank responsive Canvas App, connect the authorized Requests List, and become familiar with Tree view, the property selector, the formula bar, and Preview.
+
+Allow additional setup time for first-time learners. Do not claim a real export if you only use the local fixture.
+
+### 45-minute workshop
+
+1. Paste `ai-project-rulebook.md` into a new external AI conversation.
+2. Record the real List schema, export its deliberately fictional current view, and give AI both files.
+3. Build the read-only gallery, due-date sorting, and selected-record details in Power Apps Studio.
+4. Ask AI to generate the local collection from the supplied schema and sanitized CSV/JSON.
 5. Compare with `requests-fixture.powerfx.txt` only as a reference fallback after your prompt attempt.
-6. Use `debug-evidence-brief.md` while diagnosing.
-7. Finish `independent-challenge.md`.
+6. Inspect sanitized JSON, use `debug-evidence-brief.md`, and complete the guided Choice-versus-Text repair.
+7. Add and test All/Green/Yellow/Red, then finish the grouping-bug challenge in the existing app.
 
 ## Create a safe practice List
 
@@ -30,6 +39,10 @@ Use an authorized SharePoint practice site or the Microsoft Lists app. Do not us
 Do not import the supplied CSV and assume its types were preserved. CSV strings do not create or prove Choice, Person, Date/Time, or Yes/No configuration.
 
 If you cannot create a List, ask the instructor for an authorized practice List. You can still complete the local collection workflow with the kit, but do not claim you completed a real List export.
+
+## Connect the beginner Canvas App
+
+At `make.powerapps.com`, create a blank responsive Canvas App. In Power Apps Studio, use **Data > Add data > SharePoint**, enter the authorized practice site URL, and select **Requests**. Studio labels can vary. Use Tree view to rename controls, choose the exact property beside the formula bar, preview with Alt/F5, and exit Preview with Escape. Stop if the site or List is not authorized.
 
 ## Fixture facts
 
@@ -58,6 +71,10 @@ Official Microsoft source: [Export to Excel from SharePoint or Lists](https://su
 If `Copy` is blocked, use the fallback formula from the lesson to set `varDebugJSON`, set a multiline Text input's `Default` to `varDebugJSON`, then select and copy the visible text manually.
 
 Use `ShowColumns` deliberately so unsupported or unnecessary fields are not silently included. The fixture projection omits Description and Owner because they are not needed for the filter diagnosis. JSON can emit logical column names when both display and logical names exist; inspect the actual output rather than assuming its keys.
+
+## Optional troubleshooting: wrong column name
+
+If Studio flags a field such as `IsComplete`, do not replace the whole gallery formula. Compare the name with the sanitized JSON keys and the verified schema. In this fixture the field is `Completed`. Restore that one field name inside the complete `SortByColumns(Filter(...), "DueDate", SortOrder.Ascending)` formula, then retest eight incomplete rows and ascending dates. For a real List, verify both display and internal names rather than guessing from a visible label.
 
 Microsoft references:
 
