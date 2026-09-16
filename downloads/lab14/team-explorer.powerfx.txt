@@ -1,0 +1,169 @@
+TEAM EXPLORER POWER FX REFERENCE
+================================
+
+These short examples use the teaching List shape in team-members-schema.json.
+They are references for the named property, not a finished app. Confirm the
+actual display and internal names in your authorized List before using them.
+
+Conventions
+-----------
+- Data source: TeamMembers
+- Directory gallery: galTeamMembers
+- Search input: txtSearch
+- Team dropdown: drpTeam (Items: ["All", "Analytics", "Design", "Geospatial", "IT Operations", "Product", "Software Engineering"])
+- Selected record variable: varSelectedEmployee
+- Directory screen: scrTeamExplorer
+- Profile screen: scrProfile
+- The canonical Team Explorer model stores multiline values with newline
+  characters. The browser can use Split(..., Char(10)) to render chips; it is
+  still the same stored text value.
+- Team is intentionally plain text. ProfileImage is plain multiline text
+  containing a self-contained data:image/svg+xml image data URL. Do not
+  configure it as a Hyperlink, Person, or Image field; bind the stored text
+  directly to a Power Apps Image property.
+
+1. galTeamMembers.Items — search and team filter
+-------------------------------------------------
+With(
+    {
+        query: Trim(txtSearch.Text),
+        selectedTeam: drpTeam.Selected.Value
+    },
+    SortByColumns(
+        Filter(
+            TeamMembers,
+            (
+                IsBlank(query) ||
+                query in Name ||
+                query in JobTitle ||
+                query in Skills ||
+                query in Expertise
+            ) &&
+            (
+                selectedTeam = "All" ||
+                IsBlank(selectedTeam) ||
+                Team = selectedTeam
+            )
+        ),
+        "Name",
+        SortOrder.Ascending
+    )
+)
+
+2. galTeamMembers.OnSelect — save a record and open the profile
+-----------------------------------------------------------------
+Set(varSelectedEmployee, ThisItem);
+Navigate(scrProfile, ScreenTransition.Cover)
+
+3. scrProfile labels and image
+------------------------------
+Set each control's Text or Image property to one of these expressions:
+
+    varSelectedEmployee.Name
+    varSelectedEmployee.JobTitle
+    varSelectedEmployee.Team
+    varSelectedEmployee.Location
+    varSelectedEmployee.Bio
+    varSelectedEmployee.Education
+    varSelectedEmployee.Skills
+    varSelectedEmployee.Expertise
+    varSelectedEmployee.Certifications
+    varSelectedEmployee.AskMeAbout
+    varSelectedEmployee.ProfileImage
+
+For the profile image control specifically, set its Image property to
+varSelectedEmployee.ProfileImage. Power Apps reads the stored
+data:image/svg+xml value directly; no image connector is involved.
+
+For a gallery of skill chips, set the gallery's Items property to:
+
+    Split(varSelectedEmployee.Skills, Char(10))
+
+The Split result is a small presentation table. It does not change the
+newline-delimited value stored in TeamMembers.
+
+4. Clear filters button — OnSelect
+-----------------------------------
+Reset(txtSearch);
+Reset(drpTeam)
+
+5. Back to Team button — OnSelect
+---------------------------------
+Back()
+
+6. Safe debugging JSON — button OnSelect
+-----------------------------------------
+Copy(
+    JSON(
+        ShowColumns(
+            TeamMembers,
+            ID,
+            Name,
+            JobTitle,
+            Team,
+            Skills,
+            Expertise
+        ),
+        JSONFormat.IndentFour
+    )
+)
+
+JSON and Copy are behavior functions. Put this expression on a button's
+OnSelect property, not in a label or gallery Items property. The projection
+intentionally leaves out URL/media and unrelated profile fields.
+
+If clipboard access is blocked, use this button OnSelect instead:
+
+    Set(
+        varDebugJSON,
+        JSON(
+            ShowColumns(TeamMembers, ID, Name, JobTitle, Team, Skills, Expertise),
+            JSONFormat.IndentFour
+        )
+    )
+
+Then set a multiline Text input's Default property to varDebugJSON and copy
+the visible text manually.
+
+7. Small build prompts to give an external AI assistant
+--------------------------------------------------------
+Search gallery:
+    My List is TeamMembers, my gallery is galTeamMembers, and my search box
+    is txtSearch. Write the Items formula to search Name, JobTitle, Skills,
+    and Expertise. Explain each condition and use the exact property name.
+
+Profile navigation:
+    When a card in galTeamMembers is selected, save ThisItem in
+    varSelectedEmployee and navigate to scrProfile. Give the OnSelect formula
+    and explain why the variable should hold ThisItem rather than a hard-coded
+    LookUp result.
+
+Combined team filter:
+    My team dropdown is drpTeam and its "All" option has Value "All". Modify
+    the existing galTeamMembers.Items formula so Team and txtSearch work
+    together. Keep the smallest change and name the property you changed.
+
+8. Alex → Jordan debugging model
+----------------------------------
+Faulty galTeamMembers.OnSelect (deliberate teaching fault):
+
+    Set(varSelectedEmployee, LookUp(TeamMembers, Name = "Jordan Lee"));
+    Navigate(scrProfile, ScreenTransition.Cover)
+
+Observed state after selecting Alex:
+
+    Selected gallery record: {ID: 101, Name: "Alex Morgan"}
+    varSelectedEmployee: {ID: 102, Name: "Jordan Lee"}
+    scrProfile displays: Jordan Lee
+
+Expected: selecting Alex displays Alex Morgan.
+Actual: selecting Alex displays Jordan Lee.
+
+The smallest modeled repair is:
+
+    Set(varSelectedEmployee, ThisItem);
+    Navigate(scrProfile, ScreenTransition.Cover)
+
+Test the same click again and inspect the selected record, variable, and
+profile. Diagnose one layer at a time: gallery selection, variable assignment,
+then profile display.
