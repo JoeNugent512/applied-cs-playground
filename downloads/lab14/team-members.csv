@@ -1,0 +1,46 @@
+ID,Name,JobTitle,Team,Education,Skills,Expertise,Tools,Certifications,Location,Email,Bio,AskMeAbout,ProfileImage
+"101","Alex Morgan","Computer Scientist","Software Engineering","B.S. Computer Science
+M.S. Data Science","Python
+Power Apps
+Databases","Application Development
+Data Visualization
+Database Design","VS Code
+Power BI
+Git","Microsoft Certified: Power Platform App Maker Associate","Seattle, WA","alex.morgan@example.test","Alex is a software engineer specializing in internal tools and data systems. With a background in data science, Alex bridges the gap between raw data and usable applications.","Power Apps architecture
+Python scripting
+Database design","data:image/svg+xml;utf8,<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 100 100""><defs><linearGradient id=""g"" x1=""0%"" y1=""0%"" x2=""100%"" y2=""100%""><stop offset=""0%"" stop-color=""%230284c7""/><stop offset=""100%"" stop-color=""%230369a1""/></linearGradient></defs><rect width=""100"" height=""100"" fill=""url(%23g)""/><text x=""50"" y=""54"" font-family=""sans-serif"" font-size=""40"" font-weight=""bold"" fill=""white"" text-anchor=""middle"" dominant-baseline=""middle"">AM</text></svg>"
+"102","Jordan Lee","Data Analyst","Analytics","B.S. Statistics","SQL
+Power BI
+Excel","Reporting
+Dashboarding
+Statistical Modeling","Tableau
+Power BI Desktop","Data Analyst Associate","Chicago, IL","jordan.lee@example.test","Jordan loves turning complex datasets into clear, actionable dashboards. Always happy to help troubleshoot a tricky SQL query.","Power BI DAX
+SQL joins
+Data cleaning","data:image/svg+xml;utf8,<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 100 100""><defs><linearGradient id=""g"" x1=""0%"" y1=""0%"" x2=""100%"" y2=""100%""><stop offset=""0%"" stop-color=""%23059669""/><stop offset=""100%"" stop-color=""%23047857""/></linearGradient></defs><rect width=""100"" height=""100"" fill=""url(%23g)""/><text x=""50"" y=""54"" font-family=""sans-serif"" font-size=""40"" font-weight=""bold"" fill=""white"" text-anchor=""middle"" dominant-baseline=""middle"">JL</text></svg>"
+"103","Sam Gupta","Systems Administrator","IT Operations","A.S. Information Technology","Networking
+Azure AD
+PowerShell","Infrastructure
+Identity Management
+Security","Azure Portal
+Active Directory","Azure Administrator Associate","Austin, TX","sam.gupta@example.test","Sam keeps the lights on and the networks secure. An expert in automating routine IT tasks using PowerShell.","Azure AD permissions
+Network troubleshooting
+Scripting","data:image/svg+xml;utf8,<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 100 100""><defs><linearGradient id=""g"" x1=""0%"" y1=""0%"" x2=""100%"" y2=""100%""><stop offset=""0%"" stop-color=""%23d97706""/><stop offset=""100%"" stop-color=""%23b45309""/></linearGradient></defs><rect width=""100"" height=""100"" fill=""url(%23g)""/><text x=""50"" y=""54"" font-family=""sans-serif"" font-size=""40"" font-weight=""bold"" fill=""white"" text-anchor=""middle"" dominant-baseline=""middle"">SG</text></svg>"
+"104","Taylor Reed","Product Manager","Product","B.A. Business Administration","Agile
+Jira
+User Research","Roadmapping
+Feature Prioritization","Jira
+Confluence
+Figma","Certified Scrum Product Owner","New York, NY","taylor.r@example.test","Taylor drives product strategy and ensures engineering teams are building what users actually need.","Agile rituals
+Writing user stories","data:image/svg+xml;utf8,<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 100 100""><defs><linearGradient id=""g"" x1=""0%"" y1=""0%"" x2=""100%"" y2=""100%""><stop offset=""0%"" stop-color=""%237c3aed""/><stop offset=""100%"" stop-color=""%236d28d9""/></linearGradient></defs><rect width=""100"" height=""100"" fill=""url(%23g)""/><text x=""50"" y=""54"" font-family=""sans-serif"" font-size=""40"" font-weight=""bold"" fill=""white"" text-anchor=""middle"" dominant-baseline=""middle"">TR</text></svg>"
+"105","Casey Reed","GIS Specialist","Geospatial","B.S. Geography","ArcGIS
+QGIS
+Python","Spatial Analysis
+Cartography","ArcGIS Pro
+ArcGIS Online","GIS Professional (GISP)","Denver, CO","casey.reed@example.test","Casey creates maps that tell a story. Passionate about applying spatial data to business problems.","Mapping web services
+Spatial queries","data:image/svg+xml;utf8,<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 100 100""><defs><linearGradient id=""g"" x1=""0%"" y1=""0%"" x2=""100%"" y2=""100%""><stop offset=""0%"" stop-color=""%23be185d""/><stop offset=""100%"" stop-color=""%239f1239""/></linearGradient></defs><rect width=""100"" height=""100"" fill=""url(%23g)""/><text x=""50"" y=""54"" font-family=""sans-serif"" font-size=""40"" font-weight=""bold"" fill=""white"" text-anchor=""middle"" dominant-baseline=""middle"">CR</text></svg>"
+"106","Morgan Chen","UX Designer","Design","B.F.A. Graphic Design","Figma
+Prototyping
+CSS","User Interfaces
+Accessibility","Figma
+Adobe CC","UX Certification","San Francisco, CA","morgan.chen@example.test","Morgan believes good design is invisible. Focuses on making internal tools as intuitive as consumer apps.","Accessibility standards
+Figma components","data:image/svg+xml;utf8,<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 100 100""><defs><linearGradient id=""g"" x1=""0%"" y1=""0%"" x2=""100%"" y2=""100%""><stop offset=""0%"" stop-color=""%23e11d48""/><stop offset=""100%"" stop-color=""%23be123c""/></linearGradient></defs><rect width=""100"" height=""100"" fill=""url(%23g)""/><text x=""50"" y=""54"" font-family=""sans-serif"" font-size=""40"" font-weight=""bold"" fill=""white"" text-anchor=""middle"" dominant-baseline=""middle"">MC</text></svg>"
