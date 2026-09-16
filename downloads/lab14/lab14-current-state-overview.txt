@@ -1,0 +1,73 @@
+HISTORICAL REVIEW MATERIAL — NOT ACTIVE LAB 14 GUIDANCE
+======================================================
+
+The following is the preserved pre-Team-Explorer review record. It remains
+unchanged as historical context and is not an active lesson or setup resource.
+
+LAB 14 CURRENT-STATE OVERVIEW
+
+Lab 14 is currently a 12-slide, 45-minute workshop about using an external AI assistant carefully while building and debugging a small Microsoft Power Apps Canvas app. The learning goal is not to teach AI-generated app building as an end in itself. It is to help a beginner give AI accurate context, check its assumptions against real data types, request small changes, gather evidence from the running app, and verify each repair.
+
+SETUP ASSUMPTIONS
+
+The timed workshop assumes the learner can already open Power Apps Studio and use Tree view, the property selector, formula bar, and Preview. To avoid spending the session on permissions and backend setup, the instructor can prepare:
+
+- an authorized, nonproduction Microsoft List named Requests, using fictional data;
+- a blank responsive Canvas app with an empty scrRequests screen;
+- a working SharePoint connection from that app to the Requests List; and
+- edit access for the learner, plus the sanitized schema, sample data, AI rulebook, and debugging resources.
+
+The learner should begin with a blank connected app, not a completed gallery or prefilled solution. The Requests List contains ID, Title, Description, Status, DueDate, Owner, and Completed. Status is a single SharePoint Choice, Owner is a single Person field, DueDate is Date/Time, and Completed is Yes/No. The supplied class snapshot contains 12 fictional rows: eight incomplete and four complete.
+
+WHAT HAPPENS IN POWER APPS AND MICROSOFT LISTS
+
+The actual application work happens in Microsoft Lists and Power Apps Studio. The learner reviews or exports a real authorized List view, records the real schema separately, and sanitizes any rows before sharing them with AI. In Power Apps, the learner inserts and renames controls, writes formulas on specific properties, previews the app, clicks rows, loads a local test collection, inspects state, introduces and repairs faults, and verifies the finished behavior. The app remains read-only throughout: there is no Patch, submit action, flow, Dataverse table, custom API, or other server write.
+
+WHAT THE WEBSITE DEMONSTRATES
+
+The Lab 14 website is the lesson and reference surface. Its workflow, schema, app-anatomy, test, and evidence visuals are fictional teaching demonstrations; they are not a substitute browser implementation of Power Apps and they do not connect to the learner's Microsoft tenant. The downloadable CSV, JSON, and Power Fx fixture also use a fixed fictional snapshot. They make counts and edge cases reproducible, but success with the local collection does not prove live SharePoint internal names, permissions, connector behavior, delegation behavior, or production readiness.
+
+STUDENT JOURNEY
+
+1. Brief AI before building. The learner opens the lesson, Power Apps Studio, and an external AI assistant side by side. They paste a project rulebook that requires exact names and types, questions for important unknowns, the smallest testable change, and diagnosis before replacement. No embedded AI or Copilot license is required.
+
+2. Verify the data handoff. The learner pairs a deliberately sanitized List export with a schema sidecar. They establish that CSV strings alone cannot prove SharePoint Choice, Person, Date/Time, or Yes/No types, and confirm which fields require .Value, formatting, or a subfield.
+
+3. Build a read-only Requests browser. In Power Apps, the learner creates galRequests, filters to incomplete records, sorts by DueDate ascending, and displays title, status, and due date. They then add selected-record behavior with varSelectedRequest and external detail labels so two different row clicks visibly change the selected request without writing data.
+
+4. Create reproducible test data. The learner asks AI to convert the supplied schema and sanitized CSV/JSON into a 12-row ClearCollect fixture. They run it from a button, inspect colTestRequests, and temporarily bind the gallery's complete filter-and-sort behavior to that collection. Known totals make the result checkable: 12 rows overall, eight incomplete, with incomplete counts of Green 3, Yellow 3, and Red 2.
+
+5. Inspect evidence before changing code. The learner creates a sanitized JSON projection of the app's actual state, inspects its keys and shapes, and packages four items for debugging: Expected, Actual, Formula, and Data. AI is asked for one likely hypothesis, one small test, one minimal fix, and an exact retest.
+
+6. Debug types. A guided fault compares the Status Choice record directly with the text "Green." The learner uses JSON evidence to prove that Status has a Value field, repairs the comparison to Status.Value, and retests for the expected three incomplete Green rows.
+
+7. Extend and test the browser. The learner adds a classic status dropdown with All, Green, Yellow, and Red. They modify the existing gallery formula while preserving the incomplete-only rule and ascending due-date sort, then verify counts of 8, 3, 3, and 2.
+
+8. Debug grouping independently. The final challenge supplies a faulty Boolean condition whose operator grouping allows completed color matches to leak into filtered results. The learner records the bad counts, uses completed record IDs as evidence, identifies the grouping problem, adds the smallest parentheses repair, and reruns every status test rather than relying on the All case alone.
+
+AI'S ROLE
+
+AI works beside the learner as an external assistant. It helps restate the schema, generate a fixture, propose property-specific Power Fx, explain a type mismatch, form a debugging hypothesis, and suggest a minimal repair. The learner remains responsible for supplying verified context, withholding sensitive information, checking the actual Studio control and connector shapes, running formulas, inspecting evidence, and deciding whether a result passes. The workshop deliberately treats AI output as a hypothesis to test rather than an answer to trust.
+
+INTERACTIVE TEACHING DEMOS AND DEBUGGING EMPHASIS
+
+The lesson alternates short explanations with actions in Power Apps: building a gallery, selecting records, loading known test data, copying or displaying JSON, applying a Choice filter, switching status values, and reproducing a grouping bug. The two main debugging ideas are:
+
+- type evidence: a SharePoint Choice record is not plain text, so the formula must compare its Value field; and
+- grouping evidence: Completed=false must apply to both the All branch and each selected-status branch.
+
+The repeated method is context, schema, requirement, questions, smallest code change, test data, inspection, diagnosis, and retest.
+
+FINAL OUTCOME
+
+By the end, the learner has a small read-only Requests browser in Power Apps. It shows only incomplete requests, sorts them by due date, filters them by status, and displays the selected record in a separate detail area. The learner also retains a sanitized JSON inspection and before/after debugging evidence showing that the type and grouping repairs were verified. The intended outcome is therefore both a working app behavior and a repeatable way to collaborate with AI without letting it guess or rewrite the app indiscriminately.
+
+POSSIBLE RESHAPE QUESTIONS
+
+- Audience: Is this for a true Power Apps beginner, or for someone who already understands galleries, controls, properties, and Preview?
+- Emphasis: Should the workshop primarily teach Power Apps construction, safe AI collaboration, data-shape literacy, or evidence-led debugging?
+- Setup: Should the instructor always provide the List and blank connected Canvas app, or should any backend/export work remain inside the timed learner journey?
+- Pacing: Is 45 minutes enough for 12 slides, live Power Apps editing, fixture generation, JSON inspection, two guided changes, and an independent grouping challenge?
+- AI involvement: Which steps should AI actively generate or diagnose, and which should the learner complete unaided to demonstrate understanding?
+- Real versus local data: How much time should be spent on a real List export versus the reproducible fictional collection?
+- Final outcome: Should success be a working request browser, a completed evidence brief, demonstrated Power Fx understanding, a reusable AI-debugging method, or a deliberate combination of these?
